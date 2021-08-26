@@ -1,11 +1,4 @@
-import (
-    nltk,
-    numpy,
-    tflearn,
-    tensorflow,
-    random,
-    json
-)
+import nltk, numpy, tflearn, tensorflow, random, json
 
 class ChatBot:
     def __init__(self, intents_path):
