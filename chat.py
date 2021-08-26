@@ -67,4 +67,7 @@ class ChatBot:
         net = tflearn.regression(net)
 
         self.model = tflearn.DNN(net)
-
+    
+    def train_model(self):
+        self.model.fit(self.training, self.output, n_epoch=1000, batch_size=8, show_metric=True)
+        self.model.save("model.tflearn")
