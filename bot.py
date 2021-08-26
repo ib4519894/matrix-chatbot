@@ -1,8 +1,7 @@
 import simplematrixbotlib as botlib
+import os
 
-with open(".env", "r") as f:
-    env = f.readlines()
-    creds = botlib.Creds(env[0][:-1], env[1][:-1], env[2])
+creds = botlib.Creds(os.getenv("MATRIX_BOT_HOMESERVER"), os.getenv("MATRIX_BOT_USERNAME"), os.getenv("MATRIX_BOT_PASSWORD"))
 bot = botlib.Bot(creds)
 PREFIX = '!'
 
