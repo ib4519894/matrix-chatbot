@@ -1,7 +1,7 @@
 import nltk, numpy, tflearn, tensorflow, random, json
 
 class ChatBot:
-    def __init__(self, intents_path):
+    def __init__(self, intents_path="intents.json", model_path="model.tflearn"):
         self.stemmer = nltk.stem.lancaster
         self.words = []
         self.labels = []
@@ -13,7 +13,7 @@ class ChatBot:
         self.prepare_intents(intents_path)
         self.word_stemming()
         self.prepare_bag_of_words(0)
-        self.create_model()
+        self.create_model(model_path)
 
     def prepare_intents(self, intents_path):
         with open(intents_path, "r") as f:
@@ -68,6 +68,6 @@ class ChatBot:
 
         self.model = tflearn.DNN(net)
     
-    def train_model(self):
+    def train_model(self, model_path):
         self.model.fit(self.training, self.output, n_epoch=1000, batch_size=8, show_metric=True)
-        self.model.save("model.tflearn")
+        self.model.save(model_path)
