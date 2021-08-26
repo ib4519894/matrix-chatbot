@@ -1,5 +1,5 @@
 PYTHON=python
-START=bot.py
+START=main.py
 
 help:
 	@echo "-help-"

@@ -1,5 +1,6 @@
 import simplematrixbotlib as botlib
 import os
+from chat i
 
 creds = botlib.Creds(os.getenv("MATRIX_BOT_HOMESERVER"), os.getenv("MATRIX_BOT_USERNAME"), os.getenv("MATRIX_BOT_PASSWORD"))
 bot = botlib.Bot(creds)
