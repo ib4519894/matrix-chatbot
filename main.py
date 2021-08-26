@@ -1,3 +1,5 @@
+#Based on https://www.techwithtim.net/tutorials/ai-chatbot/
+
 import simplematrixbotlib as botlib
 import os
 from chat i
