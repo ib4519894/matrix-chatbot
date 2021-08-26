@@ -60,7 +60,7 @@ class ChatBot:
     def create_model(self):
         tensorflow.reset_default_graph()
 
-        net = tflearn.input_date(shape=None, len(self.training[0])])
+        net = tflearn.input_date(shape=[None, len(self.training[0])])
         net = tflearn.fully_connected(net, 8)
         net = tflearn.fully_connected(net, 8)
         net = tflearn.fully_connected(net, len(self.output[0], activation="softmax"))
