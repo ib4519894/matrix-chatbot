@@ -1,1 +1,1 @@
-simplematrixbotlib==2
+simplematrixbotlib==2.0.0
