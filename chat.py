@@ -2,7 +2,7 @@ import nltk, numpy, tflearn, tensorflow, random, json
 
 class ChatBot:
     def __init__(self, intents_path="intents.json", model_path="model.tflearn"):
-        self.stemmer = nltk.stem.lancaster
+        self.stemmer = nltk.stem.lancaster.LancasterStemmer
         self.words = []
         self.labels = []
         self.docs_x = []
@@ -12,8 +12,8 @@ class ChatBot:
 
         self.prepare_intents(intents_path)
         self.word_stemming()
-        self.prepare_bag_of_words(0)
-        self.create_model(model_path)
+        self.prepare_bag_of_words()
+        self.create_model()
 
     def prepare_intents(self, intents_path):
         with open(intents_path, "r") as f:
@@ -24,13 +24,13 @@ class ChatBot:
                 wrds = nltk.word_tokenize(pattern)
                 self.words.extend(wrds)
                 self.docs_x.append(wrds)
-                self.prepare_intentsdocs_y.append(intent["tag"])
+                self.docs_y.append(intent["tag"])
             
             if intent["tag"] not in self.labels:
                 self.labels.append(intent["tag"])
     
     def word_stemming(self):
-        self.words = [self.stemmer.stem(w.lower()) for w in self.words if w != "?"]
+        self.words = [self.stemmer.stem(self.stemmer, w.lower()) for w in self.words if w != "?"]
         self.words = sorted(list(set(self.words)))
 
         self.labels = sorted(self.labels)
@@ -40,7 +40,7 @@ class ChatBot:
 
         for x, doc in enumerate(self.docs_x):
             bag = []
-            wrds = [self.stemmer.stem(w.lower()) for w in doc]
+            wrds = [self.stemmer.stem(self.stemmer, w.lower()) for w in doc]
         
             for w in self.words:
                 if w in wrds:
@@ -49,7 +49,7 @@ class ChatBot:
                     bag.append(0)
             
             output_row = out_empty[:]
-            output_row[self.labels.index(docs_y[x])] = 1
+            output_row[self.labels.index(self.docs_y[x])] = 1
 
             self.training.append(bag)
             self.output.append(output_row)
@@ -60,7 +60,7 @@ class ChatBot:
     def create_model(self):
         tensorflow.reset_default_graph()
 
-        net = tflearn.input_date(shape=[None, len(self.training[0])])
+        net = tflearn.input_data(shape=[None, len(self.training[0])])
         net = tflearn.fully_connected(net, 8)
         net = tflearn.fully_connected(net, 8)
         net = tflearn.fully_connected(net, len(self.output[0], activation="softmax"))
