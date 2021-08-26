@@ -14,9 +14,12 @@ class ChatBot:
         self.labels = []
         self.docs_x = []
         self.docs_y = []
+        self.training = []
+        self.output = []
 
         self.prepare_intents(intents_path)
         self.word_stemming()
+        self.prepare_bag_of_words(0)
 
     def prepare_intents(self, intents_path):
         with open(intents_path, "r") as f:
@@ -38,5 +41,30 @@ class ChatBot:
 
         self.labels = sorted(self.labels)
     
+    def prepare_bag_of_words(self):
+        out_empty = [0 for _ in range(len(self.labels))]
+
+        for x, doc in enumerate(self.docs_x):
+            bag = []
+            wrds = [self.stemmer.stem(w.lower()) for w in doc]
+        
+            for w in self.words:
+                if w in wrds:
+                    bag.append(1)
+                else:
+                    bag.append(0)
+            
+            output_row = out_empty[:]
+            output_row[self.labels.index(docs_y[x])] = 1
+
+            self.training.append(bag)
+            self.output.append(output_row)
+        
+        self.training = numpy.array(self.training)
+        self.output = numpy.array(self.output)
+
+        
+
     
+
 
