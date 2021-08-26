@@ -13,6 +13,7 @@ class ChatBot:
         self.prepare_intents(intents_path)
         self.word_stemming()
         self.prepare_bag_of_words(0)
+        self.create_model()
 
     def prepare_intents(self, intents_path):
         with open(intents_path, "r") as f:
@@ -55,9 +56,15 @@ class ChatBot:
         
         self.training = numpy.array(self.training)
         self.output = numpy.array(self.output)
-
-        
-
     
+    def create_model(self):
+        tensorflow.reset_default_graph()
 
+        net = tflearn.input_date(shape=None, len(self.training[0])])
+        net = tflearn.fully_connected(net, 8)
+        net = tflearn.fully_connected(net, 8)
+        net = tflearn.fully_connected(net, len(self.output[0], activation="softmax"))
+        net = tflearn.regression(net)
+
+        self.model = tflearn.DNN(net)
 
