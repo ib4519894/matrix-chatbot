@@ -2,15 +2,17 @@
     {"tag": "greeting",
      "patterns": ["Hi", "How are you", "Hello", "Good day"],
      "responses": ["Hello", "Good to see you", "Hi there, how can I help?"],
-     "context_set": ""
+     "context": [""]
     },
     {"tag": "goodbye",
      "patterns": ["Bye", "See you later", "Goodbye"],
-     "responses": ["See you later", "Have a nice day", "Bye!"]
+     "responses": ["See you later", "Have a nice day", "Bye!"],
+     "context": [""]
     },
     {"tag": "thanks",
      "patterns": ["Thanks", "Thank you", "ty"],
-     "responses": ["Glad to be helpful", "No Problem", "You're Welcome"]
+     "responses": ["Glad to be helpful", "No Problem", "You're Welcome"],
+     "context": [""]
     },
 ]
 }

@@ -1,4 +1,4 @@
-#Based on https://www.techwithtim.net/tutorials/ai-chatbot/
+#Based on https://towardsdatascience.com/how-to-create-a-chatbot-with-python-deep-learning-in-less-than-an-hour-56a063bdfc44
 
 import simplematrixbotlib as botlib
 import os
