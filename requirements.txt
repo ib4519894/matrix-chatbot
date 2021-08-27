@@ -1,5 +1,4 @@
 simplematrixbotlib==2.0.0
-numpy
 nltk
-tensorflow
-tflearn
+numpy
+keras
