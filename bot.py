@@ -1,4 +1,5 @@
 import chatterbot
+from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
 
 class CustomChatterBot:
     def __init__(self, name="Matrix-Chatbot", learning=True):
@@ -12,12 +13,12 @@ class CustomChatterBot:
         ]
     
     def train(self):
-        list_trainer = chatterbot.trainers.ListTrainer(self.chatterbot)
-        for label, response_list in response_training_data:
-            print(f"Training {label}")
+        list_trainer = ListTrainer(self.chatterbot)
+        for response_list in self.response_training_data.values():
+            print(f"Training {response_list}")
             list_trainer.train(response_list)
         
-        corpus_trainer = chatterbot.trainers.ChatterBotCorpusTrainer(self.chatterbot)
+        corpus_trainer = ChatterBotCorpusTrainer(self.chatterbot)
         for corpus in self.corpus_training_data:
             print(f"Training {corpus}")
             corpus_trainer.train(corpus)
