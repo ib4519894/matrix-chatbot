@@ -6,17 +6,18 @@ class CustomChatterBot:
         self.chatterbot = chatterbot.ChatBot(name="placeholder_name", read_only=False, logic_adapters=['chatterbot.logic.MathematicalEvaluation', 'chatterbot.logic.BestMatch'])
         self.response_training_data = {
             "greetings":["hello", "hi"],
-            "salutations":["bye, goodbye"]
+            "salutations":["bye, goodbye"],
+            "numbers":[str(x) for x in range(0, 10)]
         }
         self.corpus_training_data = [
             "chatterbot.corpus.english"
         ]
     
     def train(self):
-        list_trainer = ListTrainer(self.chatterbot)
+        self.list_trainer = ListTrainer(self.chatterbot)
         for label, response_list in self.response_training_data.items():
             print(f"Training {label}")
-            list_trainer.train(response_list)
+            self.list_trainer.train(response_list)
         
         corpus_trainer = ChatterBotCorpusTrainer(self.chatterbot)
         for corpus in self.corpus_training_data:
