@@ -14,8 +14,8 @@ class CustomChatterBot:
     
     def train(self):
         list_trainer = ListTrainer(self.chatterbot)
-        for response_list in self.response_training_data.values():
-            print(f"Training {response_list}")
+        for label, response_list in self.response_training_data.items():
+            print(f"Training {label}")
             list_trainer.train(response_list)
         
         corpus_trainer = ChatterBotCorpusTrainer(self.chatterbot)
