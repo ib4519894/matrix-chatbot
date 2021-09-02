@@ -28,7 +28,7 @@ async def train_from_chat(room, message):
         data = data[2:]
     chat_log.append(data)
     if len(chat_log) > 15:
-        print(f"Training on data: {chat_log}")
+        print(f"training - data: {chat_log}")
         cbot.list_trainer.train(chat_log)
         chat_log = []
 

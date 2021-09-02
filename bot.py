@@ -16,7 +16,7 @@ class CustomChatterBot:
     def train(self):
         self.list_trainer = ListTrainer(self.chatterbot)
         for label, response_list in self.response_training_data.items():
-            print(f"Training on data: {label}")
+            print(f"Training on data: {label}.yml")
             self.list_trainer.train(response_list)
         print("Training Complete")
     
