@@ -19,4 +19,6 @@ train:
 
 setup:
 	@echo "-setup-"
-	${PYTHON} -m pip install -r requirements.txt
+	${PYTHON} -m pip install simplematrixbotlib==2.0.0
+	${PYTHON} -m pip install chatterbot
+	${PYTHON} -m pip install chatterbot_corpus
